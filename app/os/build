@@ -1,0 +1,22 @@
+#! /bin/sh
+
+# 变量定义
+c=g++-11 # 编译器（可用 g++-xx / gcc-xx 指定为xx版本 默认是 g++ / gcc）
+
+# 初始化（重建编译目录）
+rm -r binary
+mkdir binary
+
+# 编译 object 文件（分离式编译每个源码）
+$c -c config.cc config.o
+$c -c shell.cc shell.o
+$c -c print.cc print.o
+
+# 连接并生成可执行文件
+$c -o os config.o shell.o print.o
+
+# 移动
+mv os binary/
+
+# 清除中间文件
+rm config.o shell.o print.o
