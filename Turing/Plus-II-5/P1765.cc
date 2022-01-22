@@ -1,18 +1,26 @@
 #include <iostream>
+#include <cstdio>
+#include <string>
+#include <map>
 
 using namespace std;
-map<char,int>ma;
+void initKeysMap();
+map<char,int> ma;
 
 int main()
 {
+    initKeysMap();
+    string s;
+    getline(cin, s);
+    int ans = 0;
+    for (int i = 0; i < s.size(); i++)
+        ans += ma[s[i]];
+    printf("%d", ans);
     return 0;
 }
 
 void initKeysMap()
 {
-    map<char,int>ma;
-    string word;
-    int ans=0;
     ma['a'] = 1;
     ma['b'] = 2;
     ma['c'] = 3;
@@ -40,5 +48,6 @@ void initKeysMap()
     ma['y'] = 3;
     ma['z'] = 4;
     ma[' '] = 1;
-
+    ma['*'] = 1;
+    ma['#'] = 1;
 }
